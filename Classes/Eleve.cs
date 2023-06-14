@@ -44,7 +44,7 @@ namespace SystemEducatif.Classes
             {
                 if(e.id == id)
                 {
-                    Console.WriteLine(e.id + e.nom + e.prenom + e.dateDeNaissance.ToString("dd/MM/yyyy") + e.moyenne);
+                    Console.WriteLine(e.nom + e.prenom + e.dateDeNaissance.ToString("dd/MM/yyyy") + e.moyenne);
                 }
             }
         }
