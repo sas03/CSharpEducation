@@ -1,4 +1,6 @@
-﻿using System;
+﻿//using Newtonsoft.Json;
+using System.Text.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,26 +19,49 @@ namespace SystemEducatif.Classes
 
         public List<Notes> data = new List<Notes>();
         
-        public List<Eleve> eleves = new List<Eleve>();
-        public Eleve()
+        public static List<Eleve> eleves = new List<Eleve>();
+        /*public Eleve()
         {
-            id = ++incrementE;
-        }
-        public void listeEleves()
+            id = incrementE++;
+        }*/
+        public static void listeEleves()
         {
+            Console.Clear();
             foreach (Eleve e in eleves)
             {
-                Console.WriteLine(e.id + e.nom + e.dateDeNaissance.ToString("dd/MM/yyyy"));
+                Console.WriteLine(e.id + e.nom + e.prenom + e.dateDeNaissance.ToString("dd/MM/yyyy"));
             }
+            Console.ReadLine();
         }
-        public void ajoutEleve(string nomE, string prenomE, DateTime dateN)
+        public static void ajoutEleve(string nomE, string prenomE, DateTime dateN)
         {
-            eleves.Add(new Eleve()
+            Eleve newE = new Eleve()
             {
+                id = ++incrementE,
                 nom = nomE,
                 prenom = prenomE,
                 dateDeNaissance = dateN
-            });
+            };
+            eleves.Add(newE);
+
+            //serialize l'objet en une chaine de charactères JSON(Json string)
+            string json = JsonSerializer.Serialize(eleves);
+
+            //écrire la chaine JSON string en un fichier
+            File.WriteAllText("education.json", json);
+
+            Console.WriteLine("élève ajouté avec succès");
+            Console.ReadLine();
+        }
+        public void readJson()
+        {
+            string json = File.ReadAllText("education.json");
+            List<Eleve> eleves = JsonSerializer.Deserialize<List<Eleve>>(json);
+            foreach(Eleve e in eleves)
+            {
+                Console.WriteLine(e.nom + e.prenom);
+            }
+            Console.ReadLine();
         }
         public void ConsultEleve(int id)
         {
