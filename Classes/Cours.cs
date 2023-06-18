@@ -12,23 +12,26 @@ namespace SystemEducatif.Classes
         public int id { get; set; }
         public string nom { get; set; }
 
-        public List<Cours> cours = new List<Cours>();
+        public static List<Cours> cours = new List<Cours>();
 
-        public Cours() 
+        /*public Cours() 
         {
             id = ++incrementC;
-        }
-        public void listeCours()
+        }*/
+        public static void listeCours()
         {
+            Console.Clear();
             foreach (Cours c in cours)
             {
                 Console.WriteLine(c.nom);
             }
+            Console.ReadLine();
         }
-        public void ajoutCours(string nomC)
+        public static void ajoutCours(string nomC)
         {
             cours.Add(new Cours()
             {
+                id = ++incrementC,
                 nom = nomC
             });
         }
