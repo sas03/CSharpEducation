@@ -2,10 +2,12 @@
 
 namespace SystemEducatif;
 
-class Program {
-    public static void MenuPrincipal()
+class Program
+{
+    public static Logger log = new Logger("log.txt");
+    public static void MainMenu()
     {
-        string[] menuOptions = new string[] { "Eleves\t", "Cours\t" };
+        string[] menuOptions = new string[] { "Students\t", "Lessons\t" };
         int menuSelect = 0;
 
         //loop infinie du code à l'intérieur jusqu'au "break/return" pour terminer le programme
@@ -14,7 +16,7 @@ class Program {
             Console.Clear();
             //Enlève la visibilité du curseur en console
             Console.CursorVisible = false;
-            Console.WriteLine("Bienvenue sur le Meilleur Système Educatif dans le monde !!!\nBien vouloir sélectionner entre Eleves ou Cours");
+            Console.WriteLine("Welcome to the best Educational System in the World !!!\nYou can select between 2 options: Students or Lessons");
             
             //boucle for autour de l'array de string menuOptions
             for (int i = 0; i < menuOptions.Length; i++)
@@ -42,22 +44,21 @@ class Program {
                 switch (menuSelect)
                 {
                     case 0:
-                        //ChoixEleve();
-                        MenuEleves();
+                        StudentMenu();
                         break;
                     case 1:
-                        //ChoixCours();
-                        MenuCours();
+                        LessonMenu();
                         break;
                 }
             }
         }        
     }
-    public static void MenuEleves()
+    public static void StudentMenu()
     {
-        string[] menuOptions = new string[] { "Lister les élèves\t", "Ajouter un élève\t", "Consulter un élève\t", "Ajouter une note et une appréciation pour un cours sur un élève existant\t", "Menu Principal\t" };
+        string[] menuOptions = new string[] { "List Students\t", "Add a Student\t", "Check details on a Student\t", "Add a rating and appreciation for a lesson on an existing Student\t", "Main Menu\t" };
         int menuSelect = 0;
-        Eleve e = new Eleve();
+        Student e = new Student();
+        log.Log("Student Menu Selected");
 
         while (true)
         {
@@ -82,56 +83,70 @@ class Program {
                 {
                     case 0:
                         Console.Clear();
-                        Eleve.listeEleves();
-                        //e.readJson();
+                        log.Log("Student List Selected");
+                        Student.listStudents();
                         break;
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Nom: ");
+                        Console.WriteLine("Name: ");
                         string nom = Console.ReadLine();
-                        Console.WriteLine("Prenom: ");
+                        log.Log($"Name {nom} given");
+
+                        Console.WriteLine("Firstname: ");
                         string prenom = Console.ReadLine();
+                        log.Log($"Firstname {prenom} given");
+                        
                         Console.WriteLine("Date: ");
                         string date = Console.ReadLine();
-                        Eleve.ajoutEleve(nom, prenom, date);
+                        log.Log($"Day of Birth {date} given");
+                        
+                        Student.addStudent(nom, prenom, date);
+                        log.Log("Student Added");
                         Console.Clear();
                         break;
                     case 2:
                         Console.Clear();
-                        Console.WriteLine("Id de l'élève à consulter: ");
+                        Console.WriteLine("Student's Id to checkout: ");
                         string id = Console.ReadLine();
-                        Eleve.ConsultEleve(Convert.ToInt32(id));
-                        ChoixCours();
-                        //Console.WriteLine("A faire... Consulter un élève");
+                        log.Log($"Student {id} given");
+
+                        Student.CheckStudent(Convert.ToInt32(id));
+                        log.Log($"Details of student with id {id} given");
                         Console.ReadLine();
                         break;
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("Id de l'élève: ");
+                        Console.WriteLine("Student's Id: ");
                         string eID = Console.ReadLine();
-                        Eleve eleve = Eleve.eleves.Find(e => e.id == int.Parse(eID));
+                        log.Log($"Student's {eID} given");
+                        
+                        Student eleve = Student.students.Find(e => e.id == int.Parse(eID));
                         if(eleve != null)
                         {
-                            eleve.ajoutNotes();
+                            log.Log("Student Rated");
+                            eleve.addNotes();
                         }
                         else
                         {
-                            Console.WriteLine("Il n'existe pas d'élève avec cet identifiant");
+                            log.Log("Student Id not found");
+                            Console.WriteLine("There is no Student with this Id");
                         }
-                        //Console.WriteLine("A faire... Ajouter une note et une appréciation");
+                        
                         Console.ReadLine();
                         break;
                     case 4:
-                        MenuPrincipal();
+                        log.Log("Back to Main Menu");
+                        MainMenu();
                         break;
                 }
             }
         }
     }
-    public static void MenuCours()
+    public static void LessonMenu()
     {
-        string[] menuOptions = new string[] { "Lister les cours\t", "Ajouter un nouveau cours\t", "Supprimer un cours\t", "Menu Principal\t" };
+        string[] menuOptions = new string[] { "List lessons\t", "Add a new lesson\t", "Delete a lesson\t", "Main Menu\t" };
         int menuSelect = 0;
+        log.Log("Menu Cours Selected");
 
         while (true)
         {
@@ -156,22 +171,30 @@ class Program {
                 {
                     case 0:
                         Console.Clear();
-                        Cours.listeCours();
+                        log.Log("List Lessons");
+                        Lesson.listLessons();
                         break;
                     case 1:
                         Console.Clear();
                         Console.WriteLine("Nom: ");
                         string nom = Console.ReadLine();
-                        Cours.ajoutCours(nom);
+                        log.Log($"Lesson {nom} given");
+                        
+                        Lesson.addLesson(nom);
+                        log.Log($"Lesson {nom} added");
                         Console.Clear();
                         break;
                     case 2:
                         Console.Clear();
-                        Console.WriteLine("A faire... Supprimer le cours");
+                        Console.WriteLine("Enter Id of the lesson to delete: ");
+                        string id = Console.ReadLine();
+                        Lesson.deleteLesson(Int32.Parse(id));
+                        log.Log($"Lesson with id {id} successfully deleted");
                         Console.ReadLine();
                         break;
                     case 3:
-                        MenuPrincipal();
+                        log.Log("Back to Main Menu");
+                        MainMenu();
                         break;
                 }
             }
@@ -180,77 +203,13 @@ class Program {
     public static void ChoixEleve()
     {
         Console.Clear();
-        Console.WriteLine("Liste des élèves");
+        Console.WriteLine("List of Students");
         /*var consoleK = Console.ReadKey();
         if(consoleK.Key == ConsoleKey.Escape) { }*/
         Console.ReadLine();
     }
-    public static void ChoixCours()
-    {
-        Console.Clear();
-        Console.WriteLine("Liste des cours");
-        Console.ReadLine();
-        int menuSelect = 0;
-
-        while (true)
-        {
-            Console.Clear();
-            Console.CursorVisible = false;
-            for (int i = 0; i < Cours.cours.Count; i++)
-            {
-                Console.WriteLine((i == menuSelect ? "> " : "") + Cours.cours[i]);
-            }
-            Console.ReadLine();
-            var keyPressed = Console.ReadKey();
-            if (keyPressed.Key == ConsoleKey.DownArrow && menuSelect < Cours.cours.Count - 1)
-            {
-                menuSelect++;
-            }
-            else if (keyPressed.Key == ConsoleKey.UpArrow && menuSelect >= 1)
-            {
-                menuSelect--;
-            }
-            else if (keyPressed.Key == ConsoleKey.Enter)
-            {
-                switch (menuSelect)
-                {
-                    case 0:
-                        Console.Clear();
-                        Console.WriteLine("First choice");
-                        Console.ReadLine();
-                        break;
-                    case 1:
-                        Console.Clear();
-                        Console.WriteLine("Second choice");
-                        Console.ReadLine();
-                        break;
-                    case 2:
-                        Console.Clear();
-                        Console.WriteLine("Third choice");
-                        Console.ReadLine();
-                        break;
-                    case 3:
-                        MenuPrincipal();
-                        Console.ReadLine();
-                        break;
-                }
-            }
-        }
-    }
 
     public static void Main(string[] args) {
-        MenuPrincipal();
-        //MenuEleves();
-        Console.WriteLine("Hello World");
-        Eleve e = new Eleve();
-        /*Eleve.ajoutEleve("Sumo", "Stephane", DateTime.Now);
-        Eleve.ajoutEleve("Zeff", "Sophie", DateTime.Now);
-        Eleve.ajoutEleve("Drake", "Stephane", DateTime.Now);
-        Eleve.ajoutEleve("Meister", "Sophie", DateTime.Now);*/
-        Eleve.listeEleves();
-
-        Cours c = new Cours();
-        Cours.ajoutCours("CSharp");
-        Cours.listeCours();
+        MainMenu();
     }
 }

@@ -1,0 +1,136 @@
+2023-06-22 08:37:50 - Student Menu Selected
+2023-06-22 08:37:58 - Student List Selected
+2023-06-22 08:38:03 - Name Sumo given
+2023-06-22 08:38:05 - Firstname Stephane given
+2023-06-22 08:38:15 - Day of Birth 03-03-1991 11:03:15 given
+2023-06-22 08:38:18 - Student Added
+2023-06-22 08:38:23 - Name Ibram given
+2023-06-22 08:38:28 - Firstname Nincom given
+2023-06-22 08:38:41 - Day of Birth 09-11-1997 20:11:50 given
+2023-06-22 08:38:41 - Student Added
+2023-06-22 08:38:45 - Student List Selected
+2023-06-22 08:38:50 - Student 1 given
+2023-06-22 08:38:51 - Details of student with it 1 given
+2023-06-22 08:39:00 - Student's 1 given
+2023-06-22 08:39:00 - Student Rated
+2023-06-22 08:39:04 - Back to Main Menu
+2023-06-22 08:39:05 - Menu Cours Selected
+2023-06-22 08:39:07 - List Lessons
+2023-06-22 08:39:11 - Lesson Maths given
+2023-06-22 08:39:11 - Lesson Maths added
+2023-06-22 08:39:23 - Lesson English given
+2023-06-22 08:39:23 - Lesson English added
+2023-06-22 08:39:26 - List Lessons
+2023-06-22 08:39:30 - Back to Main Menu
+2023-06-22 08:39:33 - Student Menu Selected
+2023-06-22 08:39:36 - Student's 1 given
+2023-06-22 08:39:36 - Student Rated
+2023-06-22 08:39:49 - Student List Selected
+2023-06-22 08:56:19 - Student Menu Selected
+2023-06-22 08:56:20 - Student List Selected
+2023-06-22 08:56:23 - Name Sumo given
+2023-06-22 08:56:27 - Firstname Stephane given
+2023-06-22 08:56:33 - Day of Birth 03-03-1991 11:00:23 given
+2023-06-22 08:56:35 - Student Added
+2023-06-22 08:56:39 - Name Ibram given
+2023-06-22 08:56:42 - Firstname Monrow given
+2023-06-22 08:56:53 - Day of Birth 11-09-1996 05:04:50 given
+2023-06-22 08:56:54 - Student Added
+2023-06-22 08:56:55 - Student List Selected
+2023-06-22 08:56:59 - Back to Main Menu
+2023-06-22 08:57:01 - Menu Cours Selected
+2023-06-22 08:57:02 - List Lessons
+2023-06-22 08:57:05 - Lesson Maths given
+2023-06-22 08:57:05 - Lesson Maths added
+2023-06-22 08:57:10 - Lesson English given
+2023-06-22 08:57:10 - Lesson English added
+2023-06-22 08:57:12 - List Lessons
+2023-06-22 08:57:16 - Back to Main Menu
+2023-06-22 08:57:18 - Student Menu Selected
+2023-06-22 08:57:20 - Student 1 given
+2023-06-22 08:57:23 - Details of student with id 1 given
+2023-06-22 08:57:26 - Student's 1 given
+2023-06-22 08:57:26 - Student Rated
+2023-06-22 08:57:40 - Student List Selected
+2023-06-22 08:57:46 - Back to Main Menu
+2023-06-22 09:54:07 - Student Menu Selected
+2023-06-22 09:54:08 - Student List Selected
+2023-06-22 09:54:11 - Name Sumo given
+2023-06-22 09:54:13 - Firstname Stephane given
+2023-06-22 09:54:20 - Day of Birth 03-03-1991 11:00:00 given
+2023-06-22 09:54:21 - Student Added
+2023-06-22 09:54:25 - Student 1 given
+2023-06-22 09:54:30 - Details of student with id 1 given
+2023-06-22 09:54:42 - Student's 1 given
+2023-06-22 09:54:42 - Student Rated
+2023-06-22 09:54:48 - Back to Main Menu
+2023-06-22 09:54:49 - Menu Cours Selected
+2023-06-22 09:54:50 - List Lessons
+2023-06-22 09:54:53 - Lesson Maths given
+2023-06-22 09:54:53 - Lesson Maths added
+2023-06-22 09:54:57 - Lesson English given
+2023-06-22 09:54:57 - Lesson English added
+2023-06-22 09:54:59 - List Lessons
+2023-06-22 09:55:05 - Back to Main Menu
+2023-06-22 09:55:09 - Student Menu Selected
+2023-06-22 09:55:13 - Name Ibram given
+2023-06-22 09:55:16 - Firstname Lincoln given
+2023-06-22 09:55:28 - Day of Birth 11-03-1993 12:15:05 given
+2023-06-22 09:55:28 - Student Added
+2023-06-22 09:55:29 - Student List Selected
+2023-06-22 09:55:36 - Student's 1 given
+2023-06-22 09:55:36 - Student Rated
+2023-06-22 09:55:50 - Student List Selected
+2023-06-22 09:55:58 - Student's 1 given
+2023-06-22 09:55:58 - Student Rated
+2023-06-22 09:56:09 - Student List Selected
+2023-06-22 09:56:47 - Menu Cours Selected
+2023-06-22 09:56:53 - Back to Main Menu
+2023-06-22 10:13:13 - Menu Cours Selected
+2023-06-22 10:13:16 - Lesson Maths given
+2023-06-22 10:13:16 - Lesson Maths added
+2023-06-22 10:13:20 - Lesson English given
+2023-06-22 10:13:20 - Lesson English added
+2023-06-22 10:13:21 - List Lessons
+2023-06-22 10:13:26 - Lesson with id 1 successfully deleted
+2023-06-22 10:13:30 - List Lessons
+2023-06-22 10:13:35 - Lesson with id 3 successfully deleted
+2023-06-22 10:13:38 - List Lessons
+2023-06-22 10:13:44 - Lesson with id 1 successfully deleted
+2023-06-22 10:13:48 - Lesson with id 2 successfully deleted
+2023-06-22 10:13:50 - List Lessons
+2023-06-22 10:13:52 - Back to Main Menu
+2023-06-22 10:33:36 - Student Menu Selected
+2023-06-22 10:33:39 - Student List Selected
+2023-06-22 10:33:42 - Name Sumo given
+2023-06-22 10:33:43 - Firstname Stephane given
+2023-06-22 10:33:52 - Day of Birth 03-03-1991 15:00:30 given
+2023-06-22 10:33:52 - Student Added
+2023-06-22 10:33:55 - Name Ibram given
+2023-06-22 10:33:58 - Firstname Lincoln given
+2023-06-22 10:34:09 - Day of Birth 11-05-1999 11:03:30 given
+2023-06-22 10:34:10 - Student Added
+2023-06-22 10:34:14 - Student List Selected
+2023-06-22 10:36:31 - Student Menu Selected
+2023-06-22 10:36:35 - Name Sumo given
+2023-06-22 10:36:41 - Firstname Stephane given
+2023-06-22 10:36:54 - Day of Birth 03-03-1991 05:10:05 given
+2023-06-22 10:36:55 - Student Added
+2023-06-22 10:36:57 - Student List Selected
+2023-06-22 10:37:04 - Name Ibram given
+2023-06-22 10:37:10 - Firstname Lincoln given
+2023-06-22 10:37:25 - Day of Birth 12-11-2000 11:05:12 given
+2023-06-22 10:37:26 - Student Added
+2023-06-22 10:37:27 - Student List Selected
+2023-06-22 10:37:35 - Student 1 given
+2023-06-22 10:37:36 - Details of student with id 1 given
+2023-06-22 10:37:38 - Back to Main Menu
+2023-06-22 10:37:39 - Menu Cours Selected
+2023-06-22 10:37:40 - List Lessons
+2023-06-22 10:37:47 - Lesson Maths given
+2023-06-22 10:37:47 - Lesson Maths added
+2023-06-22 10:37:52 - Lesson English given
+2023-06-22 10:37:52 - Lesson English added
+2023-06-22 10:37:54 - List Lessons
+2023-06-22 10:37:58 - Lesson with id 1 successfully deleted
+2023-06-22 10:38:01 - Back to Main Menu
