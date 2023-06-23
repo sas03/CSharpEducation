@@ -107,7 +107,7 @@ namespace SystemEducatif.Classes
         public static void CheckStudent(int id)
         {
             Console.Clear();
-            Student eleveConsulte = students.Find(e => e.id == id);
+            Student eleveConsulte = students.FirstOrDefault(e => e.id == id);
             if (eleveConsulte != null)
             {
                 Console.WriteLine(eleveConsulte.id + "- " + eleveConsulte.name + " " + eleveConsulte.firstname + " " + eleveConsulte.dateOfBirth.ToString("yyyy-MM-dd HH:mm:ss"));
@@ -128,9 +128,7 @@ namespace SystemEducatif.Classes
         public static void addNotes()
         {
             Console.Clear();
-            string jsonContent = File.ReadAllText("education.json");
-            students = JsonSerializer.Deserialize<List<Student>>(jsonContent);
-            Console.WriteLine("Student id: ");
+            Console.WriteLine("Student Id: ");
             if(int.TryParse(Console.ReadLine(), out int sID)){
                 Student std = students.Find(s => s.id == sID);
                 if(std != null){
@@ -147,13 +145,12 @@ namespace SystemEducatif.Classes
                                 {
                                     Console.WriteLine("Enter your appreciation: ");
                                     string appreciate = Console.ReadLine();
-                                    Notes not = new Notes()
+                                    std.data.Add(new Notes()
                                     {
                                         lesson = less,
                                         note = n,
                                         appreciation = appreciate
-                                    };
-                                    std.data.Add(not);
+                                    });
                                     string json = JsonSerializer.Serialize(std.data);
                                     File.WriteAllText("notes.json", json);
                                     Console.WriteLine("Note successfully added");
