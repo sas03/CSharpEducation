@@ -21,9 +21,12 @@ namespace SystemEducatif.Classes
         public static void listLessons()
         {
             Console.Clear();
+            Console.WriteLine("----------------------------------------------------------------------\n");
+            Console.WriteLine("Lesson Informations: \n");
             foreach (Lesson c in lesson)
             {
-                Console.WriteLine(c.name);
+                Console.WriteLine("Id: \t\t" + c.id + "\nLesson: \t" + c.name);
+                Console.WriteLine("\n");
             }
             Console.ReadLine();
         }
@@ -42,8 +45,15 @@ namespace SystemEducatif.Classes
             Lesson les = lesson.Find(c => c.id == lessonID);
             if(les != null)
             {
+                // Retrieve list of students from the static List in Student class
+                List<Student> students = Student.students;
+                
+                // Delete Student's associated notes
+                foreach(Student student in students){
+                    student.data.RemoveAll(n => n.lesson.id == lessonID);
+                }
                 lesson.Remove(les);
-                Console.WriteLine($"Lesson with id {lessonID} successfully deleted");
+                Console.WriteLine($"Lesson {les.name} with id {lessonID} successfully deleted");
             }
             else
             {

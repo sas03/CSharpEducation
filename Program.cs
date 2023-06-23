@@ -16,8 +16,8 @@ class Program
             Console.Clear();
             //Enlève la visibilité du curseur en console
             Console.CursorVisible = false;
-            Console.WriteLine("Welcome to the best Educational System in the World !!!\nYou can select between 2 options: Students or Lessons");
-            
+            Console.WriteLine("\t-----------------\nWelcome to the best Educational System in the World !!!\nYou can select between 2 options: Students or Lessons\n\t-----------------\n");
+            Console.WriteLine("Pick your choice by pressing the Enter button while navigating with the up or down arrow: \n\nMain Menu\n---------\n");
             //boucle for autour de l'array de string menuOptions
             for (int i = 0; i < menuOptions.Length; i++)
             {
@@ -64,6 +64,7 @@ class Program
         {
             Console.Clear();
             Console.CursorVisible = false;
+            Console.WriteLine("\n\nStudent Menu\n---------\n");
             for (int i = 0; i < menuOptions.Length; i++)
             {
                 Console.WriteLine((i == menuSelect ? "> " : "") + menuOptions[i]);
@@ -88,15 +89,16 @@ class Program
                         break;
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Name: ");
+                        Console.WriteLine("Add a new Student\n--------------\n");
+                        Console.WriteLine("Enter the name: ");
                         string nom = Console.ReadLine();
                         log.Log($"Name {nom} given");
 
-                        Console.WriteLine("Firstname: ");
+                        Console.WriteLine("Enter the firstname: ");
                         string prenom = Console.ReadLine();
                         log.Log($"Firstname {prenom} given");
                         
-                        Console.WriteLine("Date: ");
+                        Console.WriteLine("Enter the Day of Birth in this format (dd-MM-yyyy HH:mm:ss): ");
                         string date = Console.ReadLine();
                         log.Log($"Day of Birth {date} given");
                         
@@ -138,6 +140,7 @@ class Program
         {
             Console.Clear();
             Console.CursorVisible = false;
+            Console.WriteLine("\n\nLesson Menu\n---------\n");
             for (int i = 0; i < menuOptions.Length; i++)
             {
                 Console.WriteLine((i == menuSelect ? "> " : "") + menuOptions[i]);
@@ -162,7 +165,8 @@ class Program
                         break;
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Nom: ");
+                        Console.WriteLine("Add a new Lesson\n--------------\n");
+                        Console.WriteLine("Enter the lesson name: ");
                         string nom = Console.ReadLine();
                         log.Log($"Lesson {nom} given");
                         
