@@ -21,6 +21,10 @@ namespace SystemEducatif.Classes
         
         public static List<Student> students = new List<Student>();
 
+        /*public Student()
+        {
+            id = incrementE++;
+        }*/
         public void Average(int id)
         {
             Console.Clear();
@@ -34,10 +38,6 @@ namespace SystemEducatif.Classes
                 Console.WriteLine(e.name + " " + e.firstname + "'s rating is: " + sum / e.data.Count + " on average.");
             }
         }
-        /*public Eleve()
-        {
-            id = incrementE++;
-        }*/
         public static void listStudents()
         {
             Console.Clear();
@@ -49,7 +49,7 @@ namespace SystemEducatif.Classes
                     Console.WriteLine("Notes");
                     foreach(Notes n in e.data)
                     {
-                        Console.WriteLine("Lesson: " + n.lesson_id.name + " Score: " + n.note + " Appreciation: " + n.appreciation);
+                        Console.WriteLine("Lesson: " + n.lesson.name + " Score: " + n.note + " Appreciation: " + n.appreciation);
                     }
                 }
             }
@@ -60,22 +60,30 @@ namespace SystemEducatif.Classes
             Console.Clear();
             if (DateTime.TryParse(dateN, out DateTime date))
             {
-                Student newE = new Student()
+                Student newE = students.Find(s => s.name == nomE && s.firstname == prenomE);
+                if (newE == null)
                 {
-                    id = ++incrementE,
-                    name = nomE,
-                    firstname = prenomE,
-                    dateOfBirth = date
-                };
-                students.Add(newE);
+                    newE = new Student()
+                    {
+                        id = ++incrementE,
+                        name = nomE,
+                        firstname = prenomE,
+                        dateOfBirth = date
+                    };
+                    students.Add(newE);
 
-                //serialize l'objet en une chaine de charactères JSON(Json string)
-                string json = JsonSerializer.Serialize(students);
+                    //serialize l'objet en une chaine de charactères JSON(Json string)
+                    string json = JsonSerializer.Serialize(students);
 
-                //écrire la chaine JSON string en un fichier
-                File.WriteAllText("education.json", json);
+                    //écrire la chaine JSON string en un fichier
+                    File.WriteAllText("education.json", json);
 
-                Console.WriteLine("Student successfully added");
+                    Console.WriteLine("Student successfully added");
+                }
+                else
+                {
+                    Console.WriteLine($"Student {nomE} {prenomE} already exists");
+                }
             }
             else
             {
@@ -83,10 +91,10 @@ namespace SystemEducatif.Classes
             }
             Console.ReadLine();
         }
-        public void readJson()
+        public static void readJson()
         {
             string json = File.ReadAllText("education.json");
-            List<Student> students = JsonSerializer.Deserialize<List<Student>>(json);
+            students = JsonSerializer.Deserialize<List<Student>>(json);
             foreach(Student e in students)
             {
                 Console.WriteLine(e.name + e.firstname);
@@ -114,47 +122,69 @@ namespace SystemEducatif.Classes
                 Console.ReadLine();
             }
         }
-        public void addNotes()
+        public static void addNotes()
         {
             Console.Clear();
-            Console.WriteLine("Id du cours: ");
-            int cID = Convert.ToInt32(Console.ReadLine());
-            Lesson lesson = Lesson.lesson.Find(c => c.id == cID);
-            if (lesson != null)
-            {
-                Console.WriteLine("Note: ");
-                double n = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Do you want to add an appreciation ? (Yes/No)");
-                string answer = Console.ReadLine();
-                if (answer == "Yes")
-                {
-                    Console.WriteLine("Enter your appreciation: ");
-                    string appreciate = Console.ReadLine();
-                    data.Add(new Notes()
+            string jsonContent = File.ReadAllText("education.json");
+            students = JsonSerializer.Deserialize<List<Student>>(jsonContent);
+            Console.WriteLine("Student id: ");
+            int sID = Int32.Parse(Console.ReadLine());
+            Student std = students.Find(s => s.id == sID);
+            if(std != null){
+                Console.WriteLine("Lesson Id: ");
+                if(int.TryParse(Console.ReadLine(), out int cID)){
+                    Lesson less = Lesson.lesson.Find(c => c.id == cID);
+                    if (less != null)
                     {
-                        lesson_id = lesson,
-                        note = n,
-                        appreciation = appreciate
-
-                    });
-                }
-                else if (answer == "No")
-                {
-                    data.Add(new Notes()
+                        Console.WriteLine("Note: ");
+                        double n = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Do you want to add an appreciation ? (Yes/No)");
+                        string answer = Console.ReadLine();
+                        if (answer == "Yes")
+                        {
+                            Console.WriteLine("Enter your appreciation: ");
+                            string appreciate = Console.ReadLine();
+                            Notes not = new Notes()
+                            {
+                                lesson = less,
+                                note = n,
+                                appreciation = appreciate
+                            };
+                            std.data.Add(not);
+                            string json = JsonSerializer.Serialize(std.data);
+                            File.WriteAllText("notes.json", json);
+                            Console.WriteLine("Note successfully added");
+                        }
+                        else if (answer == "No")
+                        {
+                            std.data.Add(new Notes()
+                            {
+                                lesson = less,
+                                note = n,
+                                appreciation = null
+                            });
+                            string json = JsonSerializer.Serialize(std.data);
+                            File.WriteAllText("notes.json", json);
+                            Console.WriteLine("Note successfully added");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Wrong choix");
+                        }
+                    }
+                    else
                     {
-                        lesson_id = lesson,
-                        note = n,
-                        appreciation = null
-                    });
+                        Console.WriteLine("Lesson with this id doesn't exist");
+                    }
+                } else{
+                    Console.WriteLine("Input must be a number. Try again");
                 }
-                else
-                {
-                    Console.WriteLine("Wrong choix");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Lesson with this id doesn't exist");
+                //string json = JsonSerializer.Serialize(students);
+                //écrire la chaine JSON string en un fichier
+                //File.WriteAllText("education.json", json);
+                //Console.WriteLine("Student successfully added");
+                Console.ReadLine();
+                Console.Clear();
             }
         }
     }
@@ -162,8 +192,7 @@ namespace SystemEducatif.Classes
     public class Notes
     {
         public int id { get; set; }
-        public Lesson lesson_id { get; set; }
-        //public Eleve eleve_id { get; set; }
+        public Lesson lesson { get; set; }
         public double note { get; set; }
         public string appreciation { get; set; }
     }

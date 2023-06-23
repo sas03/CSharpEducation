@@ -14,7 +14,7 @@ namespace SystemEducatif.Classes
 
         public static List<Lesson> lesson = new List<Lesson>();
 
-        /*public Cours() 
+        /*public Lesson() 
         {
             id = ++incrementC;
         }*/

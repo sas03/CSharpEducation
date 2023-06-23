@@ -116,22 +116,8 @@ class Program
                         break;
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("Student's Id: ");
-                        string eID = Console.ReadLine();
-                        log.Log($"Student's {eID} given");
-                        
-                        Student eleve = Student.students.Find(e => e.id == int.Parse(eID));
-                        if(eleve != null)
-                        {
-                            log.Log("Student Rated");
-                            eleve.addNotes();
-                        }
-                        else
-                        {
-                            log.Log("Student Id not found");
-                            Console.WriteLine("There is no Student with this Id");
-                        }
-                        
+                        Student.addNotes();
+                        //Student.readJson();
                         Console.ReadLine();
                         break;
                     case 4:
@@ -199,14 +185,6 @@ class Program
                 }
             }
         }
-    }
-    public static void ChoixEleve()
-    {
-        Console.Clear();
-        Console.WriteLine("List of Students");
-        /*var consoleK = Console.ReadKey();
-        if(consoleK.Key == ConsoleKey.Escape) { }*/
-        Console.ReadLine();
     }
 
     public static void Main(string[] args) {
